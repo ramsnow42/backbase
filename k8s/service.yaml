@@ -32,3 +32,20 @@ spec:
     port: 80
     targetPort: 5000
   type: ClusterIP
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: argocd-server-lb
+  namespace: argocd
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: argocd-server
+  ports:
+  - name: https
+    port: 443
+    targetPort: 8080
+
