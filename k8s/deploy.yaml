@@ -40,9 +40,10 @@ spec:
     spec:
       containers:
       - name: custom-nginx
-        image: ramsnow22/custom-nginx:latest
+        image: backbase.azurecr.io/custom-nginx:latest  # <-- using ACR image here
         ports:
         - containerPort: 80
+
 
 
 ---
