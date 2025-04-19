@@ -39,7 +39,7 @@ spec:
         app: custom-nginx
     spec:
       imagePullSecrets:
-      - name: acr-secret
+      - name: myregistrykey
       containers:
       - name: custom-nginx
         image: backbase.azurecr.io/custom-nginx:latest
