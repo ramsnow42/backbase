@@ -1,14 +1,14 @@
-# Use OpenJDK base image
-FROM openjdk:17-jdk-alpine
+# Use OpenJDK base image (this supports multiple platforms)
+FROM openjdk:17
 
 # Set working directory
 WORKDIR /app
 
-# Copy the Java application into the container
+# Copy source code to the container
 COPY HelloWorld.java .
 
 # Compile the Java application
 RUN javac HelloWorld.java
 
-# Run the Java application
+# Run the Java application when the container starts
 CMD ["java", "HelloWorld"]
