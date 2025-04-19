@@ -38,13 +38,14 @@ spec:
       labels:
         app: custom-nginx
     spec:
+      imagePullSecrets:
+      - name: acr-secret
       containers:
       - name: custom-nginx
         image: backbase.azurecr.io/custom-nginx:latest
         ports:
         - containerPort: 80
-      imagePullSecrets:
-      - name: myregistrykey
+
 
 
 
