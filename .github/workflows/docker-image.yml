@@ -19,8 +19,8 @@ jobs:
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-    - name: Build Docker Image
-      run: docker build -t ramsnow22/java_hello_world:latest .
+    - name: Build Docker Image for ARM64
+      run: docker build --platform linux/arm64 -t ramsnow22/java_hello_world:latest .
 
     - name: Push Docker Image
       run: docker push ramsnow22/java_hello_world:latest
