@@ -26,8 +26,8 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: custom-nginx
-  namespace: default
+  name: custom-nginx-deployment
+  namespace: prod
 spec:
   replicas: 1
   selector:
@@ -39,10 +39,11 @@ spec:
         app: custom-nginx
     spec:
       containers:
-      - name: nginx
+      - name: custom-nginx
         image: ramsnow22/custom-nginx:latest
         ports:
         - containerPort: 80
+
 
 ---
 
