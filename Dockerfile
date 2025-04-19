@@ -1,15 +1,15 @@
-# Use an official OpenJDK image with JDK (which includes javac)
-FROM openjdk:17-jdk
+# Build Stage
+FROM openjdk:17-jdk-alpine AS builder
 
-# Set working directory
 WORKDIR /app
-
-# Copy the Java source file
-COPY HelloWorld.java /app/
-
-# Compile the Java application
+COPY HelloWorld.java .
 RUN javac HelloWorld.java
 
-# Run the Java application when the container starts
+# Run Stage
+FROM openjdk:17-jre-alpine
+
+WORKDIR /app
+COPY --from=builder /app/HelloWorld.class .
+
 CMD ["java", "HelloWorld"]
 
