@@ -1,14 +1,14 @@
-# Build Stage: Use JDK to compile the Java application
-FROM openjdk:17-jdk-alpine AS builder
-
-WORKDIR /app
-COPY HelloWorld.java .
-RUN javac HelloWorld.java
-
-# Run Stage: Use JRE to run the Java application
+# Use OpenJDK base image
 FROM openjdk:17-jdk-alpine
 
+# Set working directory
 WORKDIR /app
-COPY --from=builder /app/HelloWorld.class .
 
+# Copy the Java application into the container
+COPY HelloWorld.java .
+
+# Compile the Java application
+RUN javac HelloWorld.java
+
+# Run the Java application
 CMD ["java", "HelloWorld"]

@@ -21,7 +21,6 @@ spec:
         ports:
         - containerPort: 80
 
-
 ---
 
 apiVersion: apps/v1
@@ -29,8 +28,8 @@ kind: Deployment
 metadata:
   name: java-hello-world
   namespace: prod
-labels:
-  app: java-hello-world
+  labels:  # <-- labels should be under metadata
+    app: java-hello-world
 spec:
   replicas: 1
   selector:
@@ -46,4 +45,3 @@ spec:
         image: ramsnow22/java_hello_world:latest
         ports:
         - containerPort: 8080
-
