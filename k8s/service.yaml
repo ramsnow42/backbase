@@ -20,18 +20,19 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: flask-service
+  name: java-hello-world-service
   namespace: prod
 labels:
-  app: flask-app
+  app: java-hello-world
 spec:
   selector:
-    app: flask-app
+    app: java-hello-world
   ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 5000
-  type: ClusterIP
+  - port: 80
+    targetPort: 8080
+    protocol: TCP
+    name: http
+
 
 
 

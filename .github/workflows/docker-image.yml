@@ -1,4 +1,4 @@
-name: Python Flask Docker build
+name: Java Docker build
 
 on:
   push:
@@ -15,15 +15,15 @@ jobs:
     steps:
     - name: Checkout Code
       uses: actions/checkout@v3
-      
+
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-   
+
     - name: Build Docker Image
-      run: docker build -t ramsnow22/github_action_docker:latest .
-   
+      run: docker build -t ramsnow22/java_hello_world:latest .
+
     - name: Push Docker Image
-      run: docker push ramsnow22/github_action_docker:latest
-      
-    - name: Log out from Docker Hub  
+      run: docker push ramsnow22/java_hello_world:latest
+
+    - name: Log out from Docker Hub
       run: docker logout

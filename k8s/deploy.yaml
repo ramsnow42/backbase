@@ -27,22 +27,23 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: flask-app
+  name: java-hello-world
   namespace: prod
 labels:
-  app: flask-app
+  app: java-hello-world
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: flask-app
+      app: java-hello-world
   template:
     metadata:
       labels:
-        app: flask-app
+        app: java-hello-world
     spec:
       containers:
-      - name: flask-container
-        image: ramsnow22/github_action_docker:latest
+      - name: java-container
+        image: ramsnow22/java_hello_world:latest
         ports:
-        - containerPort: 5000
+        - containerPort: 8080
+

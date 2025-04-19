@@ -1,6 +1,11 @@
-FROM python:3.9
+# Use an OpenJDK base image to run the Java application
+FROM openjdk:11-jre-slim
+# Set the working directory inside the container
 WORKDIR /app
-COPY app.py requirements.txt /app/
-RUN pip install -r requirements.txt
-EXPOSE 5000
-CMD ["python", "app.py"]
+# Copy the compiled Java application into the container
+COPY HelloWorld.java /app/
+# Compile the Java application
+RUN javac HelloWorld.java
+# Run the Java application when the container starts
+CMD ["java", "HelloWorld"]
+
