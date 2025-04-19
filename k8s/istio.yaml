@@ -57,37 +57,39 @@ spec:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: java-hello-world-vs
+  name: custom-nginx-vs
   namespace: prod
 spec:
   hosts:
-  - "*"
+  - "*"  # Matches all incoming requests
   gateways:
-  - nginx-gateway
+  - nginx-gateway  # This references your existing ingress gateway
   http:
   - match:
     - uri:
-        prefix: /java
+        exact: /  # Matches requests with the path '/'
     rewrite:
-      uri: /
+      uri: "/"  # Rewrites the path to '/'
     route:
     - destination:
-        host: java-hello-world-service.prod.svc.cluster.local
+        host: custom-nginx-service.prod.svc.cluster.local  # Your service
         port:
           number: 80
+
 
 ---
 
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: java-hello-world-dr
+  name: custom-nginx-dr
   namespace: prod
 spec:
-  host: java-hello-world-service.prod.svc.cluster.local
+  host: custom-nginx-service.prod.svc.cluster.local  # The service hostname
   trafficPolicy:
     loadBalancer:
-      simple: ROUND_ROBIN
+      simple: ROUND_ROBIN  # Load balancing strategy (you can choose others like LEAST_CONN, etc.)
+
 
 
 

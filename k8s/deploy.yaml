@@ -26,22 +26,24 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: java-hello-world
-  namespace: prod
-  labels:  # <-- labels should be under metadata
-    app: java-hello-world
+  name: custom-nginx
+  namespace: default
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: java-hello-world
+      app: custom-nginx
   template:
     metadata:
       labels:
-        app: java-hello-world
+        app: custom-nginx
     spec:
       containers:
-      - name: java-container
-        image: ramsnow22/java_hello_world:latest
+      - name: nginx
+        image: ramsnow22/custom-nginx:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 80
+
+---
+
+

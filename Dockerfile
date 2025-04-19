@@ -1,5 +1,10 @@
-FROM openjdk:11-jre-slim
-COPY HelloWorld.class /app/
-WORKDIR /app
-CMD ["java", "HelloWorld"] && tail -f /dev/null
+# Use the default Nginx image
+FROM nginx:latest
+
+# Copy custom HTML content into the Nginx container
+COPY ./index.html /usr/share/nginx/html/index.html
+
+# Expose port 80
+EXPOSE 80
+
 
