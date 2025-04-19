@@ -22,13 +22,10 @@ jobs:
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
 
-    - name: Build Docker image
+    - name: Build Docker image for multiple platforms
       run: |
-        docker build -t ramsnow22/java_hello_world:latest .
-
-    - name: Push Docker image to Docker Hub
-      run: |
-        docker push ramsnow22/java_hello_world:latest
+        docker buildx create --use
+        docker buildx build --platform linux/amd64,linux/arm64 -t ramsnow22/java_hello_world:latest . --push
 
     - name: Log out from Docker Hub
       run: |
