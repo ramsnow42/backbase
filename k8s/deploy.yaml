@@ -40,9 +40,12 @@ spec:
     spec:
       containers:
       - name: custom-nginx
-        image: backbase.azurecr.io/custom-nginx:latest  # <-- using ACR image here
+        image: backbase.azurecr.io/custom-nginx:latest
         ports:
         - containerPort: 80
+      imagePullSecrets:
+      - name: myregistrykey
+
 
 
 
