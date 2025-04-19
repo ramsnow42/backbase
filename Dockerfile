@@ -12,3 +12,4 @@ RUN javac HelloWorld.java
 
 # Run the Java application when the container starts
 CMD ["java", "HelloWorld"]
+
